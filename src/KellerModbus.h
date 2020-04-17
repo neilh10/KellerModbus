@@ -21,9 +21,9 @@ typedef enum kellerModel
 {
     Acculevel_kellerModel = 0,
     Nanolevel_kellerModel = 1,
+    Leveltroll_InsituModel = 2,
     OTHER   // Use if the sensor model is another model.
 } kellerModel;
-
 class keller
 {
 

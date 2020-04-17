@@ -109,6 +109,25 @@ bool keller::getValues(float &valueP1, float &valueTOB1)
             }
             else return false;
         }
+        case Leveltroll_InsituModel:  // This gets two values, but as seperate messages
+        {
+            #define INSITU_REG_PARAM1_ADDR 37 //Pressure default PSI
+            #define INSITU_REG_PARAM2_ADDR 45 //Temperature
+            #define INSITU_REG_PARAM3_ADDR 53  //Water Level (Level TROLLS) 
+            if (modbus.getRegisters(0x03, INSITU_REG_PARAM3_ADDR, 2))
+            {
+                float WaterP1_psi = modbus.float32FromFrame(bigEndian, 3);
+                #define PSI_TO_BAR_MULT 0.06894757
+                valueP1 = PSI_TO_BAR_MULT*WaterP1_psi;
+                if (modbus.getRegisters(0x03, INSITU_REG_PARAM2_ADDR, 2))
+                {
+                   valueTOB1 = modbus.float32FromFrame(bigEndian, 3);
+                   break;
+                }
+                else return false;
+            }
+            else return false;
+        }       
         default:  // for all other sensors get two values in one message
         {
             if (modbus.getRegisters(0x03, 0x0100, 4))
