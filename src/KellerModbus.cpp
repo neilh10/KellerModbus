@@ -114,6 +114,7 @@ bool keller::getValues(float &valueP1, float &valueTOB1)
             #define INSITU_REG_PARAM1_ADDR 37 //Pressure default PSI
             #define INSITU_REG_PARAM2_ADDR 45 //Temperature
             #define INSITU_REG_PARAM3_ADDR 53  //Water Level (Level TROLLS) 
+            //Does CRC need to made Modbus std for Insitu - Keller had it non-standard. 
             if (modbus.getRegisters(0x03, INSITU_REG_PARAM3_ADDR, 2))
             {
                 float WaterP1_psi = modbus.float32FromFrame(bigEndian, 3);
