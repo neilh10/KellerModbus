@@ -90,8 +90,8 @@ bool keller::getValueLastTempC(float &value)
 bool keller::getValues(float &valueP1, float &valueTOB1)
 {
     // Set values to -9999 and error flagged before asking for the result
-    valueP1   = -9999;  // Pressure (bar) for sensor1
-    valueTOB1 = -9999;  // Temperature (C) on board sensor 1
+    valueP1   = SNSRDEF_KP_WATERPRESSUREBAR;  // Pressure (bar) for sensor1
+    valueTOB1 = SNSRDEF_KP_WATERTEMPERATUREC;  // Temperature (C) on board sensor 1
 
     switch(_model)
     {
@@ -153,9 +153,9 @@ float keller::calcWaterDepthM(float &waterPressureBar, float &waterTempertureC)
     float waterDepthM;     // in m
     const float gravitationalConstant = 9.80665; // m/s2, meters per second squared
 
-    if (waterPressureBar == -9999)
+    if (waterPressureBar == SNSRDEF_KP_WATERPRESSUREBAR )
     {
-        waterDepthM = -9999;  // error or sensor not connected
+        waterDepthM = SNSRDEF_KP_WATERDEPTHM ;  // error or sensor not connected
     }
     else
     {

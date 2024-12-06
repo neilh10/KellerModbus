@@ -24,6 +24,43 @@ typedef enum kellerModel
     Leveltroll_InsituModel = 2,
     OTHER   // Use if the sensor model is another model.
 } kellerModel;
+
+/**
+ * @anchor keller_pressure
+ * @name Pressure
+ * The pressure variable from a Keller modbus sensor
+ */
+/**@{*/
+/// @brief Variable default Bar if no reading, can be overriden at cc. (readings are in mBar 1/1000th of this) 
+#if !defined SNSRDEF_KP_WATERPRESSUREBAR 
+#define SNSRDEF_KP_WATERPRESSUREBAR -0.09876
+#endif 
+/**@}*/
+
+/**
+ * @anchor keller_temp
+ * @name Temperature
+ * The temperature variable from a Keller modbus sensor
+ */
+/**@{*/
+/// @brief Variable default if no reading, can be overriden at cc
+#if !defined NSRDEF_KP_WATERTEMPERATURE
+#define SNSRDEF_KP_WATERTEMPERATUREC -9.876
+#endif 
+/**@}*/
+
+/**
+ * @anchor keller_height
+ * @name Height
+ * The height variable from a Keller modbus sensor
+ */
+/**@{*/
+/// @brief Variable default if no reading, can be overriden at cc
+#if !defined SNSRDEF_KP_WATERDEPTHM 
+#define SNSRDEF_KP_WATERDEPTHM -0.09876
+#endif
+/**@}*/
+
 class keller
 {
 
